@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @section %>
+
+  <% if can? :show, @section %>
+    <h4>test</h4>
+  <% end %>
+  <%= link_to "Edit this section", edit_section_path(@section) %> |
+  <%= link_to "Back to sections", sections_path %>
+  <%= button_to "Destroy this section", @section, method: :delete %>
+
+  
+  
+</div>

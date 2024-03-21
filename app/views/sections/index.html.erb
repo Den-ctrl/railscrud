@@ -1,0 +1,37 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Section</h1>
+<h4> <%= link_to "Create New Section", new_section_path %> </h4>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th>Name</th>
+        <th>Short Name</th>
+        <th>State</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @sections.roots.each do |section| %>
+        <tr>
+          <td><%= section.name %></td>
+          <td><%= section.short_name %></td>
+          <td><%= section.state %></td>
+   
+          <td>
+            <%= link_to "Show this section", section %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+
+
+
+
+
+
+
