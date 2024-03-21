@@ -21,6 +21,12 @@
     <%= form.text_field :short_name %>
   </div>
 
+
+  <% if @parent.present?  %>
+    <p> Path: <%= @parent.public_uid %> </p>
+    <%= form.hidden_field :parent_id, value: @parent.id %>
+  <% end %>
+
   <div>
     <%= form.submit %>
   </div>
