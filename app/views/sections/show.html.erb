@@ -2,13 +2,45 @@
 
 <%= render @section %>
 
-  <% if can? :show, @section %>
+  <%
+=begin%>
+ <% if can? :show, @section %>
     <h4>test</h4>
-  <% end %>
+  <% end %> 
+<%
+=end%>
   <%= link_to "Edit this section", edit_section_path(@section) %> |
-  <%= link_to "Back to sections", sections_path %>
+  <%= link_to "Back to sections", sections_path %> |
+  <%= link_to "Create New Children", new_section_path(parent_id: @section.public_uid) %>
   <%= button_to "Destroy this section", @section, method: :delete %>
 
-  
+  <% if @section.children.present? %>
+  <h5>Children</h5>
+  <div class="table-responsive">
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th>Name</th>
+        <th>Short Name</th>
+        <th>State</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @section.children.each do |child| %>
+        <tr>
+          <td><%= child.name %></td>
+          <td><%= child.short_name %></td>
+          <td><%= child.state %></td>
+          <td>
+            <%= link_to "Show this section", child %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% end %>
+
+</div>
   
 </div>

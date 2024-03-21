@@ -4,13 +4,20 @@ class SectionsController < ApplicationController
   # GET /sections or /sections.json
   def index
     @sections = Section.all
+
+    # raise @sections.inspect
   end
 
   # GET /sections/1 or /sections/1.json
-  def show; end
+  def show;
+  end
 
   # GET /sections/new
-  def new; end
+  def new
+  
+    @parent = Section.find_by(public_uid: params[:parent_id]) if params[:parent_id].present?
+  
+  end
 
   # GET /sections/1/edit
   def edit; end

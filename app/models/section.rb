@@ -2,9 +2,9 @@ class Section < ApplicationRecord
     generate_public_uid
     has_ancestry
 
-    def self.find_puid(param)
-        find_by! public_uid: param.split('-').first
-    end
+    # validates :name, :short_name, presence: true
+
+  
     
     state_machine :state, initial: :activated do
          event :published do
