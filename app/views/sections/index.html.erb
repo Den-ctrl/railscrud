@@ -2,6 +2,14 @@
 
 <h1>Section</h1>
 <h4> <%= link_to "Create New Section", new_section_path %> </h4>
+
+<%= form_tag sections_path, :method => :get do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+
 <div class="table-responsive">
   <table class="table table-striped">
     <thead class="thead-dark">
@@ -13,17 +21,19 @@
       </tr>
     </thead>
     <tbody>
-      <% @sections.roots.each do |section| %>
+    <% @sections.each do |section| %>
+      <% if section.ancestry.nil? %>
         <tr>
           <td><%= section.name %></td>
           <td><%= section.short_name %></td>
           <td><%= section.state %></td>
-   
+
           <td>
             <%= link_to "Show this section", section %>
           </td>
         </tr>
       <% end %>
+    <% end %>
     </tbody>
   </table>
 </div>

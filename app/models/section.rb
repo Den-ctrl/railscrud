@@ -4,8 +4,6 @@ class Section < ApplicationRecord
 
     # validates :name, :short_name, presence: true
 
-  
-    
     state_machine :state, initial: :activated do
          event :published do
             transition activated: :published
@@ -18,4 +16,9 @@ class Section < ApplicationRecord
             transition [:published, :unpublished] => :activated
         end
     end
+
+    searchable do
+        text :name, :short_name
+    end
+
 end

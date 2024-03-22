@@ -3,9 +3,13 @@ class SectionsController < ApplicationController
 
   # GET /sections or /sections.json
   def index
-    @sections = Section.all
-
-    # raise @sections.inspect
+    @search = Section.search do
+      fulltext params[:search ]
+    end
+    # @sections = Section.all
+    
+    @sections = @search.results
+    # @allSections = Section.all
   end
 
   # GET /sections/1 or /sections/1.json
