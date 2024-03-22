@@ -4,9 +4,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can :create, Section
-    can :destroy, Section
-    can :update, Section
+    can [:create, :destroy, :update, :show], Section
 
     can :read, Section do |record|
       record.activated?
