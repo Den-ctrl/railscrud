@@ -4,7 +4,7 @@ class Section < ApplicationRecord
     generate_public_uid
     has_ancestry
 
-    # validates :name, :short_name, presence: true
+    validates :name, :short_name, presence: true, uniqueness: true
 
     state_machine :state, initial: :activated do
          event :published do
@@ -20,7 +20,7 @@ class Section < ApplicationRecord
     end
 
     searchable do
-        text :name, :short_name
+        text :name, :short_name, :ancestry, :state
     end
 
 end
