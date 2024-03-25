@@ -1,2 +1,21 @@
-<h1>Main#home</h1>
-<p>Find me in app/views/main/home.html.erb</p>
+<h1>Users</h1>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th>Email</th>
+        <th>Roles</th>
+        <th>Created at</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @users.each do |user| %>
+        <tr>
+            <td><%= user.email %></td>
+            <td><%= user.roles.pluck(:name) %></td>
+            <td><%= user.created_at %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

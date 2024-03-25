@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   resources :sections
+
   devise_for :users
   root 'main#home'
 
+  resources :users
   get 'section', to: 'section#index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
