@@ -35,8 +35,9 @@ gem "ancestry"
 gem "state_machines"
 gem "state_machines-activerecord"
 gem "cancancan"
-gem 'sunspot_rails'
+gem "sunspot_rails"
 gem "sunspot_solr"
+gem "rolify"
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"

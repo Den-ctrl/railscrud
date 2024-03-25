@@ -6,10 +6,8 @@ class SectionsController < ApplicationController
     @search = Section.search do
       fulltext params[:search ]
     end
-    # @sections = Section.all
     
     @sections = @search.results
-    # @allSections = Section.all
   end
 
   # GET /sections/1 or /sections/1.json

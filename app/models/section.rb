@@ -1,4 +1,6 @@
 class Section < ApplicationRecord
+    include PublicUid::ModelConcern
+    
     generate_public_uid
     has_ancestry
 
