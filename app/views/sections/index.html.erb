@@ -1,12 +1,14 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Section</h1>
-<h4> <%= link_to "Create New Section", new_section_path %> </h4>
+<%= button_to "Create New Section", new_section_path, method: :get, class: "btn btn-primary", style: "margin-bottom: 10px;" %>
 
 <%= form_tag sections_path, :method => :get do %>
   <p>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", :name => nil %>
+    <%= text_field_tag :name_search, params[:name_search], placeholder: "Name" %>
+    <%= text_field_tag :short_name_search, params[:short_name_search], placeholder: "Short Name" %>
+    <%= select_tag :state_search, options_for_select(['activated', 'published', 'unpublished'], params[:state_search]), prompt: "Select State" %>
+    <%= submit_tag "Search", :name => nil, :short_name => nil, :state => nil, class: "btn btn-primary" %>
   </p>
 <% end %>
 
@@ -17,23 +19,19 @@
         <th>Name</th>
         <th>Short Name</th>
         <th>State</th>
-        <th>Public UID</th>
         <th>Action</th>
       </tr>
     </thead>
     <tbody>
     <% @sections.each do |section| %>
-      <% if section.ancestry.nil? %>
         <tr>
           <td><%= section.name %></td>
           <td><%= section.short_name %></td>
           <td><%= section.state %></td>
-          <td><%= section.public_uid %></td>
           <td>
-            <%= link_to "Show this section", section %>
+            <%= button_to "Show this section", section, method: :get, class: "btn btn-secondary" %>
           </td>
         </tr>
-      <% end %>
     <% end %>
     </tbody>
   </table>
