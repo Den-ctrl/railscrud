@@ -34,23 +34,23 @@ end
 
 
 # Generate data for Schedule
-# 10.times do
-#     event = Faker::Lorem.sentence(word_count: 3)
-#     start_date = Faker::Date.between(from: 100.days.ago, to: Date.today)
-#     end_date = Faker::Date.between(from: 100.days.ago, to: Date.today)
+10.times do
+    event = Faker::Lorem.sentence(word_count: 3)
+    start_date = Faker::Date.between(from: 100.days.ago, to: Date.today)
+    end_date = Faker::Date.between(from: 100.days.ago, to: Date.today)
 
-#     schedule = Schedule.new(
-#         event: event,
-#         start_date: start_date,
-#         end_date: end_date,
-#     )
+    schedule = Schedule.new(
+        event: event,
+        start_date: start_date,
+        end_date: end_date,
+    )
 
-#     if schedule.save
-#         puts "Schedule saved successfully!"
-#     else
-#         puts "Error saving schedule: #{schedule.errors.full_messages.join(', ')}"
-#     end
-# end
+    if schedule.save
+        puts "Schedule saved successfully!"
+    else
+        puts "Error saving schedule: #{schedule.errors.full_messages.join(', ')}"
+    end
+end
 
 # Reindex sunspot after generating data
 system('rake sunspot:reindex')

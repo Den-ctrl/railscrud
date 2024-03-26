@@ -1,8 +1,9 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Schedules</h1>
-<%= button_to "Create New Schedule", new_schedule_path, method: :get, class: "btn btn-primary", style: "margin-bottom: 10px;" %>
-
+<%  if can? :create, @schedule %>
+  <%= button_to "Create New Schedule", new_schedule_path, method: :get, class: "btn btn-primary", style: "margin-bottom: 10px;" %>
+<% end %>
 
 <div class="table-responsive">
   <table class="table table-striped">

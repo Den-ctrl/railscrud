@@ -3,12 +3,19 @@
 class Ability
   include CanCan::Ability
 
-  def initialize(user)
-    can [:create, :destroy, :update, :show], Section
-
-    can :read, Section do |record|
-      record.activated?
+  def initialize(admin)
+    user ||= User.new
+    if admin.admin?
+      can :manage, :all
+    else
+      can :read, Section, Schedule
     end
+    
+    # can [:create, :destroy, :update, :show], Section
+
+    # can :read, Section do |record|
+    #   record.activated?
+    # end
 
     # can :show, Section, state: :activated
     # Define abilities for the user here. For example:

@@ -2,27 +2,21 @@
 
 <%= render @section %>
 
-  <%
-=begin%>
- <% if can? :show, @section %>
-    <h4>test</h4>
-  <% end %> 
-<%
-=end%>
-
 <div class="btn-group" role="group">
-  <%= link_to edit_section_path(@section), class: "btn btn-success", style: "margin-right: 5px;" do %>
-    <i class="bi bi-pencil"></i> Edit this section
-  <% end %>
+  <% if can? [:update, :create, :delete], @section%>
+    <%= link_to edit_section_path(@section), class: "btn btn-success", style: "margin-right: 5px;" do %>
+      <i class="bi bi-pencil"></i> Edit this section
+    <% end %>
 
-  <%= link_to new_section_path(parent_id: @section.public_uid), class: "btn btn-success", style: "margin-right: 5px;" do %>
-    <i class="bi bi-plus"></i> Create New Children
-  <% end %>
+    <%= link_to new_section_path(parent_id: @section.public_uid), class: "btn btn-success", style: "margin-right: 5px;" do %>
+      <i class="bi bi-plus"></i> Create New Children
+    <% end %>
 
-  <%= button_to @section, method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure?' }, style: "margin-right: 5px;" do %>
-    <i class="bi bi-trash"></i> Destroy this section
+    <%= button_to @section, method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure?' }, style: "margin-right: 5px;" do %>
+      <i class="bi bi-trash"></i> Destroy this section
+    <% end %>
   <% end %>
-
+  
   <%= link_to sections_path, class: "btn btn-secondary", style: "margin-right: 5px;" do %>
     <i class="bi bi-arrow-left"></i> Back to sections
   <% end %>

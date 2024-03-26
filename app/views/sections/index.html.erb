@@ -1,8 +1,10 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Section</h1>
+<% if current_user %>
+<% if can? :create, @section %>
 <%= button_to "Create New Section", new_section_path, method: :get, class: "btn btn-primary", style: "margin-bottom: 10px;" %>
-
+<% end %>
 <%= form_tag sections_path, :method => :get do %>
   <p>
     <%= text_field_tag :name_search, params[:name_search], placeholder: "Name" %>
@@ -36,7 +38,7 @@
     </tbody>
   </table>
 </div>
-
+<% end %>
 
 
 

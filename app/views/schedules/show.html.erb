@@ -2,9 +2,20 @@
 
 <%= render @schedule %>
 
-<div>
-  <%= link_to "Edit this schedule", edit_schedule_path(@schedule) %> |
-  <%= link_to "Back to schedules", schedules_path %>
+<div class="btn-group" role="group">
+  <% if can? [:update, :create, :delete], @schedule%>
+    <%= link_to edit_schedule_path(@schedule), class: "btn btn-success", style: "margin-right: 5px;" do %>
+      <i class="bi bi-pencil"></i> Edit this schedule
+    <% end %>
 
-  <%= button_to "Destroy this schedule", @schedule, method: :delete %>
+    <%= button_to @schedule, method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure?' }, style: "margin-right: 5px;" do %>
+      <i class="bi bi-trash"></i> Destroy this schedule
+    <% end %>
+  <% end %>
+  
+  <%= link_to schedules_path, class: "btn btn-secondary", style: "margin-right: 5px;" do %>
+    <i class="bi bi-arrow-left"></i> Back to schedule
+  <% end %>
 </div>
+
+

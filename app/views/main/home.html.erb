@@ -1,3 +1,4 @@
+<% if current_user %>
 <h1>Users</h1>
 <div class="table-responsive">
   <table class="table table-striped">
@@ -18,4 +19,8 @@
     <% end %>
     </tbody>
   </table>
+<% else %>
+  <h1>Login to view contents</h1>
+<% end %>
+
 </div>
