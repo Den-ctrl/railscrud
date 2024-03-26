@@ -7,3 +7,50 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+
+require "faker"
+
+# Generate data for Section
+10.times do
+    name = Faker::Name.name
+    short_name = Faker::Name.initials(number: 2)
+
+    section = Section.new(
+        name: name,
+        short_name: short_name,
+        
+    )
+
+    if section.save
+        puts "Section saved successfully!"
+    else
+        puts "Error saving section: #{section.errors.full_messages.join(', ')}"
+    end
+end
+
+
+
+
+
+# Generate data for Schedule
+# 10.times do
+#     event = Faker::Lorem.sentence(word_count: 3)
+#     start_date = Faker::Date.between(from: 100.days.ago, to: Date.today)
+#     end_date = Faker::Date.between(from: 100.days.ago, to: Date.today)
+
+#     schedule = Schedule.new(
+#         event: event,
+#         start_date: start_date,
+#         end_date: end_date,
+#     )
+
+#     if schedule.save
+#         puts "Schedule saved successfully!"
+#     else
+#         puts "Error saving schedule: #{schedule.errors.full_messages.join(', ')}"
+#     end
+# end
+
+# Reindex sunspot after generating data
+system('rake sunspot:reindex')

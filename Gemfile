@@ -29,15 +29,31 @@ gem "cssbundling-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+# For user accounts
 gem "devise"
+
+# Generate unique public_uid for each data
 gem "public_uid"
+
+# Create children
 gem "ancestry"
+
+# Set state of data
 gem "state_machines"
 gem "state_machines-activerecord"
+
+# Permissions
 gem "cancancan"
+
+# Searchable
 gem "sunspot_rails"
 gem "sunspot_solr"
+
+# Assign role to accounts
 gem "rolify"
+
+# Populate db with data
+gem "faker"
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
