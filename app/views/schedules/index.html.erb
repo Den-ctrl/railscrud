@@ -1,0 +1,31 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Schedules</h1>
+<%= button_to "Create New Schedule", new_schedule_path, method: :get, class: "btn btn-primary", style: "margin-bottom: 10px;" %>
+
+
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th>Event</th>
+        <th>End Date</th>
+        <th>Start Date</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @schedules.each do |schedule| %>
+        <tr>
+          <td><%= schedule.event %></td>
+          <td><%= schedule.start_date %></td>
+          <td><%= schedule.end_date %></td>
+          <td>
+            <%= button_to "Show this schedule", schedule, method: :get, class: "btn btn-secondary" %>
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
