@@ -1,8 +1,9 @@
 class Section < ApplicationRecord
     include PublicUid::ModelConcern
-    
     generate_public_uid
     has_ancestry
+
+    has_many :schedules
 
     validates :name, :short_name, presence: true, uniqueness: true
 
