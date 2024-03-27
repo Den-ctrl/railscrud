@@ -1,6 +1,8 @@
 class Schedule < ApplicationRecord
     include PublicUid::ModelConcern
 
+    belongs_to :sectionable, polymorphic: true
+
     validates :event, uniqueness: true, presence: true
     validates :start_date, :end_date, presence: true
     
