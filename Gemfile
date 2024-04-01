@@ -55,6 +55,9 @@ gem "rolify"
 # Populate db with data
 gem "faker"
 
+# Track changes to model
+gem "paper_trail"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 

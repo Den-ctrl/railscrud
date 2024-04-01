@@ -1,5 +1,6 @@
 class SchedulesController < ApplicationController
   before_action :set_schedule, only: %i[ show edit update destroy ]
+  before_action :set_paper_trail_whodunnit
 
   # GET /schedules or /schedules.json
   def index
@@ -21,7 +22,8 @@ class SchedulesController < ApplicationController
 
   # POST /schedules or /schedules.json
   def create
-    @schedule = Schedule.new(schedule_params)
+    @schedule = Schedule.new(schedule_params.merge(creator: current_user.email))
+    # @schedule.creator = current_user.email
 
     respond_to do |format|
       if @schedule.save
@@ -62,9 +64,10 @@ class SchedulesController < ApplicationController
     def set_schedule
       @schedule = Schedule.find_puid(params[:id])
     end
+    
 
     # Only allow a list of trusted parameters through.
     def schedule_params
-      params.require(:schedule).permit(:event, :start_date, :end_date, :public_uid)
+      params.require(:schedule).permit(:event, :start_date, :end_date, :public_uid, :creator, :section_id)
     end
 end

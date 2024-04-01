@@ -162,6 +162,9 @@ GEM
     nokogiri (1.16.3-x86_64-darwin)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    paper_trail (15.1.0)
+      activerecord (>= 6.1)
+      request_store (~> 1.4)
     pg (1.5.6)
     pr_geohash (1.0.0)
     psych (5.1.2)
@@ -215,6 +218,8 @@ GEM
     regexp_parser (2.9.0)
     reline (0.4.3)
       io-console (~> 0.5)
+    request_store (1.6.0)
+      rack (>= 1.4)
     responders (3.1.1)
       actionpack (>= 5.2)
       railties (>= 5.2)
@@ -293,6 +298,7 @@ DEPENDENCIES
   faker
   jbuilder
   jsbundling-rails
+  paper_trail
   pg (~> 1.1)
   public_uid
   puma (>= 5.0)
