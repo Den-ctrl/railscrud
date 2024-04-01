@@ -1,7 +1,8 @@
 class Schedule < ApplicationRecord
     include PublicUid::ModelConcern
+    has_paper_trail
 
-    belongs_to :sectionable, polymorphic: true
+    belongs_to :section, polymorphic: true
 
     validates :event, uniqueness: true, presence: true
     validates :start_date, :end_date, presence: true
