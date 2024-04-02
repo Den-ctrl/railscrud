@@ -3,9 +3,9 @@
 class Ability
   include CanCan::Ability
 
-  def initialize(admin)
+  def initialize(user)
     user ||= User.new
-    if admin.admin?
+    if user.has_role?(:admin)
       can :manage, :all
     else
       can :read, Section, Schedule

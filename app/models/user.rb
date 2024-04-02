@@ -7,13 +7,14 @@ class User < ApplicationRecord
 
   after_create :assign_default_role
 
-  def admin?
-    has_role?(:admin)
-  end
+  has_many :apps
+
 
   def assign_default_role
     self.add_role(:client) if self.roles.blank?
   end
+
+  
 end
 
 

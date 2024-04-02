@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :libraries
+  resources :apps
   resources :schedules
   resources :sections
 
