@@ -1,4 +1,5 @@
 class ApplicationRecord < ActiveRecord::Base
   primary_abstract_class
-  # include PublicUid::ModelConcern
+
+  has_paper_trail
 end

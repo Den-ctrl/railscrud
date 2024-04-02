@@ -10,9 +10,9 @@
     <thead class="thead-dark">
       <tr>
         <th>Event</th>
-        <th>End Date</th>
         <th>Start Date</th>
-        <th>Creator</th>
+        <th>End Date</th>
+        <th>Whodunnit</th>
         <th>Action</th>
       </tr>
     </thead>
@@ -22,7 +22,11 @@
           <td><%= schedule.event %></td>
           <td><%= schedule.start_date %></td>
           <td><%= schedule.end_date %></td>
-          <td><%= schedule.creator %></td>
+          <td>
+            <% schedule.versions.each do |version| %>
+              <%= User.find_by(id: version.whodunnit).email %>
+            <%end%>
+          </td>
           <td>
             <%= button_to "Show this schedule", schedule, method: :get, class: "btn btn-secondary" %>
           </td>
