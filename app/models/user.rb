@@ -7,7 +7,8 @@ class User < ApplicationRecord
 
   after_create :assign_default_role
 
-  has_many :apps, dependent: :destroy
+  has_many :subscriptions, dependent: :restrict_with_error
+  has_many :apps, through: :subscriptions
   # has_many :library_membership, dependent: :restrict_with_error
   # has_many :libraries, through: :library_membership
 
