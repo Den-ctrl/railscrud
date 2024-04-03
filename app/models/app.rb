@@ -1,4 +1,4 @@
 class App < ApplicationRecord
-    has_many :libraries
-    has_many :users
+  has_many :subscriptions, dependent: :restrict_with_error
+  has_many :users, through: :subscriptions
 end

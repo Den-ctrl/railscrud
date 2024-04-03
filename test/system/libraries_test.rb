@@ -14,6 +14,7 @@ class LibrariesTest < ApplicationSystemTestCase
     visit libraries_url
     click_on "New library"
 
+    fill_in "Library name", with: @library.library_name
     click_on "Create Library"
 
     assert_text "Library was successfully created"
@@ -24,6 +25,7 @@ class LibrariesTest < ApplicationSystemTestCase
     visit library_url(@library)
     click_on "Edit this library", match: :first
 
+    fill_in "Library name", with: @library.library_name
     click_on "Update Library"
 
     assert_text "Library was successfully updated"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_02_021205) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_03_041840) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_02_021205) do
   create_table "apps", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "app_name"
   end
 
   create_table "clients", force: :cascade do |t|
@@ -32,6 +33,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_02_021205) do
   create_table "libraries", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "library_name"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -51,6 +53,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_02_021205) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "public_uid"
+    t.string "schedulable_type"
+    t.bigint "schedulable_id"
+    t.bigint "section_id", default: 1, null: false
+    t.index ["schedulable_type", "schedulable_id"], name: "index_schedules_on_schedulable"
+    t.index ["section_id"], name: "index_schedules_on_section_id"
   end
 
   create_table "sections", force: :cascade do |t|
@@ -64,6 +71,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_02_021205) do
     t.index ["ancestry"], name: "index_sections_on_ancestry"
   end
 
+  create_table "subscriptions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "app_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["app_id"], name: "index_subscriptions_on_app_id"
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -72,6 +88,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_02_021205) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "type"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -94,4 +111,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_02_021205) do
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 
+  add_foreign_key "subscriptions", "apps"
+  add_foreign_key "subscriptions", "users"
 end

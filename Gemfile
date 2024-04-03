@@ -58,6 +58,9 @@ gem "faker"
 # Track changes to model
 gem "paper_trail"
 
+# Catch unsafe migrations in development
+gem "strong_migrations"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
