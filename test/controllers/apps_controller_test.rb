@@ -17,7 +17,7 @@ class AppsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create app" do
     assert_difference("App.count") do
-      post apps_url, params: { app: {  } }
+      post apps_url, params: { app: { app_name: @app.app_name } }
     end
 
     assert_redirected_to app_url(App.last)
@@ -34,7 +34,7 @@ class AppsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update app" do
-    patch app_url(@app), params: { app: {  } }
+    patch app_url(@app), params: { app: { app_name: @app.app_name } }
     assert_redirected_to app_url(@app)
   end
 

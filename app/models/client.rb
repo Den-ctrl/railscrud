@@ -1,7 +1,5 @@
-class Client < User
-    rolify
-    
-    has_many :schedules, as: :section
+class Client < User 
+    has_many :schedules, as: :schedulable, dependent: :destroy
 
     devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :validatable

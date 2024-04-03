@@ -19,25 +19,34 @@ class SchedulesController < ApplicationController
   def edit
   end
 
-  # POST /schedules or /schedules.json
-  def create
-    @schedule = Schedule.new(schedule_params)
-    # @schedule.creator = current_user.email
+# POST /schedules or /schedules.json
+def create
+  @schedule = Schedule.new(schedule_params)
 
-    respond_to do |format|
-      if @schedule.save
-        format.html { redirect_to schedule_url(@schedule), notice: "Schedule was successfully created." }
-        format.json { render :show, status: :created, location: @schedule }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @schedule.errors, status: :unprocessable_entity }
-      end
+  # Fetch an existing section
+  section = Section.first
+
+  # Fetch an existing admin
+  admin = Admin.first
+
+  # Associate the schedule with the fetched section and admin
+  @schedule.section = section
+  @schedule.schedulable = admin
+
+  respond_to do |format|
+    if @schedule.save
+      format.html { redirect_to schedule_url(@schedule), notice: "Schedule was successfully created." }
+      format.json { render :show, status: :created, location: @schedule }
+    else
+      format.html { render :new, status: :unprocessable_entity }
+      format.json { render json: @schedule.errors, status: :unprocessable_entity }
     end
   end
+end
 
   # PATCH/PUT /schedules/1 or /schedules/1.json
   def update
-    respond_to do |format|
+    respond_to do |format|p
       if @schedule.update(schedule_params)
         format.html { redirect_to schedule_url(@schedule), notice: "Schedule was successfully updated." }
         format.json { render :show, status: :ok, location: @schedule }
@@ -61,12 +70,11 @@ class SchedulesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_schedule
-      @schedule = Schedule.find_puid(params[:id])
+      @schedule = Schedule.find(params[:id])
     end
     
-
     # Only allow a list of trusted parameters through.
     def schedule_params
-      params.require(:schedule).permit(:event, :start_date, :end_date, :public_uid)
+      params.require(:schedule).permit(:event, :start_date, :end_date, :section_id, :schedulable_id, :schedulable_type)
     end
 end

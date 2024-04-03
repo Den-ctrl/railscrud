@@ -1,4 +1,3 @@
 class App < ApplicationRecord
-    has_many :libraries
-    has_many :users
+  has_many :libraries, dependent: :destroy
 end

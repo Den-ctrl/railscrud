@@ -14,6 +14,7 @@ class AppsTest < ApplicationSystemTestCase
     visit apps_url
     click_on "New app"
 
+    fill_in "App name", with: @app.app_name
     click_on "Create App"
 
     assert_text "App was successfully created"
@@ -24,6 +25,7 @@ class AppsTest < ApplicationSystemTestCase
     visit app_url(@app)
     click_on "Edit this app", match: :first
 
+    fill_in "App name", with: @app.app_name
     click_on "Update App"
 
     assert_text "App was successfully updated"
