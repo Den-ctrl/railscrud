@@ -1,5 +1,5 @@
 module PaperTrail
-    class ScheduleTrail
+    class ProjectTrail
         # Returns who creates the @schedule
         def creator
             # Return if there are no versions
