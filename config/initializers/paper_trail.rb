@@ -1,6 +1,6 @@
 module PaperTrail
-    class ProjectTrail
-        # Returns who creates the @schedule
+    class RecordTrail
+        # Returns who creates the data
         def creator
             # Return if there are no versions
             return if versions.blank?

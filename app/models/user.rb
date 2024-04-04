@@ -8,9 +8,9 @@ class User < ApplicationRecord
   after_create :assign_default_role
 
   has_many :subscriptions, dependent: :restrict_with_error
-  has_many :apps, through: :subscriptions
-  # has_many :library_membership, dependent: :restrict_with_error
-  # has_many :libraries, through: :library_membership
+  has_many :apps, through: :subscriptions, dependent: :restrict_with_error
+
+  validates :email, uniqueness: true, presence: true
 
   def assign_default_role
     self.add_role(:client) if self.roles.blank?
