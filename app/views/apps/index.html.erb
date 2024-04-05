@@ -1,14 +1,38 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Apps</h1>
-
-<div id="apps">
-  <% @apps.each do |app| %>
-    <%= render app %>
-    <p>
-      <%= link_to "Show this app", app %>
-    </p>
+<% if current_user %>
+  <% if notice.present? %>
+    <p class="text-green-500"><%= notice %></p>
   <% end %>
-</div>
 
-<%= link_to "New app", new_app_path %>
+  <h1 class="text-2xl font-semibold mb-4 mt-4">Apps</h1>
+
+  <% if can? :create, @app %>
+    <%= button_to "Create New App", new_app_path, method: :get, class: "btn btn-primary mb-4" %>
+  <% end %>
+
+  <div class="overflow-x-auto">
+    <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+      <thead class="bg-gray-800 text-white">
+        <tr>
+          <th class="py-2 px-4">App</th>
+          <th class="py-2 px-4">Whodunnit</th>
+          <th class="py-2 px-4">Action</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200">
+        <% @apps.each do |app| %>
+          <tr>
+            <td class="py-2 px-4"><%= app.app_name %></td>
+            <td class="py-2 px-4">     
+              <% app.versions.each do |version| %>
+                <%= User.find_by(id: version.whodunnit).email %>
+              <%end%>
+            </td>
+            <td class="py-2 px-4">
+              <%= button_to "Show this app", app, method: :get, class: "btn btn-secondary" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>

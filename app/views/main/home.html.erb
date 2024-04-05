@@ -1,26 +1,33 @@
 <% if current_user %>
-<h1>Users</h1>
-<div class="table-responsive">
-  <table class="table table-striped">
-    <thead class="thead-dark">
-      <tr>
-        <th>Email</th>
-        <th>Roles</th>
-        <th>Created at</th>
-      </tr>
-    </thead>
-    <tbody>
-    <% @users.each do |user| %>
+  <h1 class="text-2xl font-semibold mb-4 mt-4">Users</h1>
+  <div class="overflow-x-auto">
+    <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+      <thead class="bg-gray-800 text-white">
         <tr>
-            <td><%= user.email %></td>
-            <td><%= user.roles.pluck(:name) %></td>
-            <td><%= user.created_at %></td>
+          <th class="py-2 px-4">Email</th>
+          <th class="py-2 px-4">Roles</th>
+          <th class="py-2 px-4">Created at</th>
         </tr>
-    <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody class="divide-y divide-gray-200">
+        <% @users.each do |user| %>
+          <tr>
+            <td class="py-2 px-4"><%= user.email %></td>
+            <td class="py-2 px-4"><%= user.roles.pluck(:name).join(', ') %></td>
+            <td class="py-2 px-4"><%= user.created_at %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 <% else %>
-  <h1>Login to view contents</h1>
+  <div class="flex justify-center items-center h-screen">
+    <div class="max-w-md mx-auto bg-white shadow-md rounded-lg p-8">
+      <h1 class="text-4xl mb-8">Login to view contents</h1>
+      <div class="flex justify-center space-x-4">
+        <%= link_to "Login", new_user_session_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline no-underline" %>
+        <%= link_to "Sign Up", new_user_registration_path, class: "bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline no-underline" %>
+      </div>
+    </div>
+  </div>
 <% end %>
-
-</div>

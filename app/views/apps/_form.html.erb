@@ -1,6 +1,6 @@
 <%= form_with(model: app) do |form| %>
   <% if app.errors.any? %>
-    <div style="color: red">
+    <div class="text-red-500">
       <h2><%= pluralize(app.errors.count, "error") %> prohibited this app from being saved:</h2>
 
       <ul>
@@ -11,12 +11,13 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :app_name, style: "display: block" %>
-    <%= form.text_field :app_name %>
+  <div class="mb-4">
+    <%= form.label :app_name, class: "block text-gray-700" %>
+    <%= form.text_field :app_name, class: "border rounded py-2 px-3 focus:outline-none focus:shadow-outline" %>
   </div>
 
+
   <div>
-    <%= form.submit %>
+    <%= form.submit "Submit", class: "bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
   </div>
 <% end %>

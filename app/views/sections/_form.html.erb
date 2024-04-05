@@ -1,6 +1,6 @@
 <%= form_with(model: section) do |form| %>
   <% if section.errors.any? %>
-    <div style="color: red">
+    <div class="text-red-500">
       <h2><%= pluralize(section.errors.count, "error") %> prohibited this section from being saved:</h2>
 
       <ul>
@@ -11,23 +11,22 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="mb-4">
+    <%= form.label :name, class: "block text-gray-700" %>
+    <%= form.text_field :name, class: "border rounded py-2 px-3 focus:outline-none focus:shadow-outline" %>
   </div>
 
-  <div>
-    <%= form.label :short_name, style: "display: block" %>
-    <%= form.text_field :short_name %>
+  <div class="mb-4">
+    <%= form.label :short_name, class: "block text-gray-700" %>
+    <%= form.text_field :short_name, class: "border rounded py-2 px-3 focus:outline-none focus:shadow-outline" %>
   </div>
 
-
-  <% if @parent.present?  %>
-    <p> Path: <%= @parent.public_uid %> </p>
+  <% if @parent.present? %>
+    <p class="mb-4">Path: <%= @parent.public_uid %></p>
     <%= form.hidden_field :parent_id, value: @parent.id %>
   <% end %>
 
   <div>
-    <%= form.submit "Submit", class: "btn btn-success" %>
+    <%= form.submit "Submit", class: "bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
   </div>
 <% end %>
