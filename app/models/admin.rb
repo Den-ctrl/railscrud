@@ -1,5 +1,5 @@
 class Admin < User    
-    has_many :schedules, as: :schedulable, dependent: :restrict_with_error
+    has_many :schedules, as: :schedulable, dependent: :destroy
 
     devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :validatable
