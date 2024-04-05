@@ -1,48 +1,45 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Section</h1>
 <% if current_user %>
-<% if can? :create, @section %>
-<%= button_to "Create New Section", new_section_path, method: :get, class: "btn btn-primary", style: "margin-bottom: 10px;" %>
-<% end %>
-<%= form_tag sections_path, :method => :get do %>
-  <p>
-    <%= text_field_tag :name_search, params[:name_search], placeholder: "Name" %>
-    <%= text_field_tag :short_name_search, params[:short_name_search], placeholder: "Short Name" %>
-    <%= select_tag :state_search, options_for_select(['activated', 'published', 'unpublished'], params[:state_search]), prompt: "Select State" %>
-    <%= submit_tag "Search", :name => nil, :short_name => nil, :state => nil, class: "btn btn-primary" %>
-  </p>
-<% end %>
+  <% if notice.present? %>
+    <p class="text-green-500"><%= notice %></p>
+  <% end %>
 
-<div class="table-responsive">
-  <table class="table table-striped">
-    <thead class="thead-dark">
-      <tr>
-        <th>Name</th>
-        <th>Short Name</th>
-        <th>State</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-    <% @sections.each do |section| %>
+  <h1 class="text-2xl font-semibold mb-4 mt-4">Section</h1>
+
+  <% if can? :create, @section %>
+    <%= button_to "Create New Section", new_section_path, method: :get, class: "btn btn-primary mb-4" %>
+  <% end %>
+
+  <%= form_tag sections_path, method: :get, class: "mb-4" do %>
+    <div class="flex flex-wrap space-x-4">
+      <%= text_field_tag :name_search, params[:name_search], placeholder: "Name", class: "border rounded py-2 px-3 focus:outline-none focus:shadow-outline" %>
+      <%= text_field_tag :short_name_search, params[:short_name_search], placeholder: "Short Name", class: "border rounded py-2 px-3 focus:outline-none focus:shadow-outline" %>
+      <%= select_tag :state_search, options_for_select(['activated', 'published', 'unpublished'], params[:state_search]), prompt: "Select State", class: "border rounded py-2 px-3 focus:outline-none focus:shadow-outline" %>
+      <%= submit_tag "Search", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+
+  <div class="overflow-x-auto">
+    <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+      <thead class="bg-gray-800 text-white">
         <tr>
-          <td><%= section.name %></td>
-          <td><%= section.short_name %></td>
-          <td><%= section.state %></td>
-          <td>
-            <%= button_to "Show this section", section, method: :get, class: "btn btn-secondary" %>
-          </td>
+          <th class="py-2 px-4">Name</th>
+          <th class="py-2 px-4">Short Name</th>
+          <th class="py-2 px-4">State</th>
+          <th class="py-2 px-4">Action</th>
         </tr>
-    <% end %>
-    </tbody>
-  </table>
-</div>
+      </thead>
+      <tbody class="divide-y divide-gray-200">
+        <% @sections.each do |section| %>
+          <tr>
+            <td class="py-2 px-4"><%= section.name %></td>
+            <td class="py-2 px-4"><%= section.short_name %></td>
+            <td class="py-2 px-4"><%= section.state %></td>
+            <td class="py-2 px-4">
+              <%= button_to "Show this section", section, method: :get, class: "btn btn-secondary" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 <% end %>
-
-
-
-
-
-
-

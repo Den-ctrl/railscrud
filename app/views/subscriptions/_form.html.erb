@@ -1,6 +1,6 @@
 <%= form_with(model: subscription) do |form| %>
   <% if subscription.errors.any? %>
-    <div style="color: red">
+    <div class="text-red-500">
       <h2><%= pluralize(subscription.errors.count, "error") %> prohibited this subscription from being saved:</h2>
 
       <ul>
@@ -11,15 +11,16 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.collection_select :user_id, User.order(:email), :id, :email, { include_blank: 'Select User' } %>
+  <div class="mb-4">
+    <%= form.collection_select :user_id, User.order(:email), :id, :email, { include_blank: 'Select User' }, class: "border rounded py-2 px-3 focus:outline-none focus:shadow-outline" %>
   </div>
 
-  <div>
-    <%= form.collection_select :app_id, App.order(:app_name), :id, :app_name, { include_blank: 'Select App' } %>
+   <div class="mb-4">
+    <%= form.collection_select :app_id, App.order(:app_name), :id, :app_name, { include_blank: 'Select App' }, class: "border rounded py-2 px-3 focus:outline-none focus:shadow-outline" %>
   </div>
 
+
   <div>
-    <%= form.submit %>
+    <%= form.submit "Submit", class: "bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
   </div>
 <% end %>
