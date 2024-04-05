@@ -1,14 +1,34 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Subscriptions</h1>
-
-<div id="subscriptions">
-  <% @subscriptions.each do |subscription| %>
-    <%= render subscription %>
-    <p>
-      <%= link_to "Show this subscription", subscription %>
-    </p>
+<% if current_user %>
+  <% if notice.present? %>
+    <p class="text-green-500"><%= notice %></p>
   <% end %>
-</div>
 
-<%= link_to "New subscription", new_subscription_path %>
+  <h1 class="text-2xl font-semibold mb-4 mt-4">Subscriptions</h1>
+
+  <% if can? :create, @subscription %>
+    <%= button_to "Create New Subscription", new_subscription_path, method: :get, class: "btn btn-primary mb-4" %>
+  <% end %>
+
+  <div class="overflow-x-auto">
+    <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+      <thead class="bg-gray-800 text-white">
+        <tr>
+          <th class="py-2 px-4">User</th>
+          <th class="py-2 px-4">App</th>
+          <th class="py-2 px-4">Action</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200">
+        <% @subscriptions.each do |subscription| %>
+          <tr>
+            <td class="py-2 px-4"><%= User.find_by(id: subscription.user_id)&.email %></td>
+            <td class="py-2 px-4"><%= App.find_by(id: subscription.app_id)&.app_name %></td>
+            <td class="py-2 px-4">
+              <%= button_to "Show this subscription", subscription, method: :get, class: "btn btn-secondary" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>

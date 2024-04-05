@@ -1,38 +1,42 @@
-<p style="color: green"><%= notice %></p>
+<% if current_user %>
+  <% if notice.present? %>
+    <p class="text-green-500"><%= notice %></p>
+  <% end %>
 
-<h1>Schedules</h1>
-<%  if can? :create, @schedule %>
-  <%= button_to "Create New Schedule", new_schedule_path, method: :get, class: "btn btn-primary", style: "margin-bottom: 10px;" %>
-<% end %>
+  <h1 class="text-2xl font-semibold mb-4 mt-4">Schedule</h1>
 
-<div class="table-responsive">
-  <table class="table table-striped">
-    <thead class="thead-dark">
-      <tr>
-        <th>Event</th>
-        <th>Start Date</th>
-        <th>End Date</th>
-        <th>Whodunnit</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-    <% @schedules.each do |schedule| %>
+  <% if can? :create, @schedule %>
+    <%= button_to "Create New Schedule", new_schedule_path, method: :get, class: "btn btn-primary mb-4" %>
+  <% end %>
+
+  <div class="overflow-x-auto">
+    <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+      <thead class="bg-gray-800 text-white">
         <tr>
-          <td><%= schedule.event %></td>
-          <td><%= schedule.start_date %></td>
-          <td><%= schedule.end_date %></td>
-          <td>
-            <% schedule.versions.each do |version| %>
-              <%= User.find_by(id: version.whodunnit).email %>
-            <%end%>
-          </td>
-          <td>
-            <%= button_to "Show this schedule", schedule, method: :get, class: "btn btn-secondary" %>
-          </td>
+          <th class="py-2 px-4">Event</th>
+          <th class="py-2 px-4">Start Date</th>
+          <th class="py-2 px-4">End Date</th>
+          <th class="py-2 px-4">Whodunnit</th>
+          <th class="py-2 px-4">Action</th>
         </tr>
-    <% end %>
-    </tbody>
-  </table>
-</div>
-
+      </thead>
+      <tbody class="divide-y divide-gray-200">
+        <% @schedules.each do |schedule| %>
+          <tr>
+            <td class="py-2 px-4"><%= schedule.event %></td>
+            <td class="py-2 px-4"><%= schedule.start_date %></td>
+            <td class="py-2 px-4"><%= schedule.end_date %></td>
+            <td class="py-2 px-4">     
+              <% schedule.versions.each do |version| %>
+                <%= User.find_by(id: version.whodunnit).email %>
+              <%end%>
+            </td>
+            <td class="py-2 px-4">
+              <%= button_to "Show this schedule", schedule, method: :get, class: "btn btn-secondary" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
