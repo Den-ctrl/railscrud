@@ -1,0 +1,25 @@
+<div id="<%= dom_id profile %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">User:</strong>
+    <%= User.find(profile.user_id).email %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">First name:</strong>
+    <%= profile.first_name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Middle name:</strong>
+    <%= profile.middle_name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Suffix:</strong>
+    <%= profile.suffix %>
+  </p>
+
+
+    <%= link_to "Edit this profile", edit_profile_path(profile), class: "btn btn-primary mr-2" %>
+
+</div>

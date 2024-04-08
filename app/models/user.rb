@@ -7,10 +7,11 @@ class User < ApplicationRecord
 
   after_create :assign_default_role
 
+  has_one :profile, dependent: :destroy
+  accepts_nested_attributes_for :profile
+
   has_many :subscriptions, dependent: :restrict_with_error
   has_many :apps, through: :subscriptions
-  # has_many :library_membership, dependent: :restrict_with_error
-  # has_many :libraries, through: :library_membership
 
   def assign_default_role
     self.add_role(:client) if self.roles.blank?
