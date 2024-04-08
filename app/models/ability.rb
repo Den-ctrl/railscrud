@@ -11,7 +11,7 @@ class Ability
     else
       can :read, Section
       can :read, Schedule
-      can :read, Apps
+      can :read, App
       can :read, Library
       can :read, Subscription
     end

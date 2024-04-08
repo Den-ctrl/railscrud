@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
+  resources :profiles
   resources :subscriptions
   resources :apps
   resources :libraries
   resources :schedules
   resources :sections
 
-  devise_for :users
+  # devise_for :users
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
+  }
   root 'main#home'
 
   resources :users

@@ -1,0 +1,10 @@
+<div class="flex justify-center items-center h-screen bg-gray-100">
+  <div class="w-full max-w-lg bg-white rounded-lg shadow-md">
+    <h1 class="text-3xl font-semibold mb-1 mt-8 text-center">User Profile</h1>
+
+    <div id="profiles" class="w-full p-6">
+      <% @profile = @profiles.find_by(user_id: current_user.id) %>
+      <%= render partial: "profile", locals: { profile: @profile } if @profile %>
+    </div>
+  </div>
+</div>
