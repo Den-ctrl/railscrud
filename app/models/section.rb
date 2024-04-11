@@ -3,8 +3,6 @@ class Section < ApplicationRecord
     generate_public_uid
     has_ancestry
 
-    has_many :schedules, dependent: :destroy
-
     validates :name, :short_name, presence: true, uniqueness: true
 
     state_machine :state, initial: :activated do

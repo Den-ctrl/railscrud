@@ -23,16 +23,6 @@ class SchedulesController < ApplicationController
 def create
   @schedule = Schedule.new(schedule_params)
 
-  # Fetch an existing section
-  section = Section.first
-
-  # Fetch an existing admin
-  admin = Admin.first
-
-  # Associate the schedule with the fetched section and admin
-  @schedule.section = section
-  @schedule.schedulable = admin
-
   respond_to do |format|
     if @schedule.save
       format.html { redirect_to schedule_url(@schedule), notice: "Schedule was successfully created." }
