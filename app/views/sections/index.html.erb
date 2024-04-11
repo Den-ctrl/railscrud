@@ -3,18 +3,28 @@
     <p class="text-green-500"><%= notice %></p>
   <% end %>
 
-  <h1 class="text-2xl font-semibold mb-4 mt-4">Section</h1>
+  <div class="flex items-center justify-between mb-4 mt-4">
+    <h1 class="text-2xl font-semibold">Section</h1>
 
-  <% if can? :create, @section %>
-    <%= button_to "Create New Section", new_section_path, method: :get, class: "btn btn-primary mb-4" %>
-  <% end %>
+    <% if can? :create, @section %>
+      <%= button_to new_section_path, method: :get, class: "btn btn-primary ml-4" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+        </svg>
+      <% end %>
+    <% end %>
+  </div>
 
   <%= form_tag sections_path, method: :get, class: "mb-4" do %>
     <div class="flex flex-wrap space-x-4">
       <%= text_field_tag :name_search, params[:name_search], placeholder: "Name", class: "border rounded py-2 px-3 focus:outline-none focus:shadow-outline" %>
       <%= text_field_tag :short_name_search, params[:short_name_search], placeholder: "Short Name", class: "border rounded py-2 px-3 focus:outline-none focus:shadow-outline" %>
       <%= select_tag :state_search, options_for_select(['activated', 'published', 'unpublished'], params[:state_search]), prompt: "Select State", class: "border rounded py-2 px-3 focus:outline-none focus:shadow-outline" %>
-      <%= submit_tag "Search", class: "btn btn-primary" %>
+      <%= button_tag type: "submit", class: "btn btn-primary flex items-center" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+        </svg>
+      <% end %>
     </div>
   <% end %>
 
@@ -35,7 +45,11 @@
             <td class="py-2 px-4"><%= section.short_name %></td>
             <td class="py-2 px-4"><%= section.state %></td>
             <td class="py-2 px-4">
-              <%= button_to "Show this section", section, method: :get, class: "btn btn-secondary" %>
+              <%= button_to section, method: :get, class: "btn btn-secondary"  do%>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+                </svg>
+              <% end %>
             </td>
           </tr>
         <% end %>
