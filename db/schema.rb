@@ -67,11 +67,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_11_051702) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "public_uid"
-    t.string "schedulable_type"
-    t.bigint "schedulable_id"
-    t.bigint "section_id", default: 1, null: false
-    t.index ["schedulable_type", "schedulable_id"], name: "index_schedules_on_schedulable"
-    t.index ["section_id"], name: "index_schedules_on_section_id"
   end
 
   create_table "sections", force: :cascade do |t|
