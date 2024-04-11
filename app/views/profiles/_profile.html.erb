@@ -1,25 +1,38 @@
-<div id="<%= dom_id profile %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">User:</strong>
-    <%= User.find(profile.user_id).email %>
-  </p>
+<div id="<%= dom_id profile %>" >
+  <div class="mb-4 grid grid-cols-2">
+    <div>
+      <strong class="block font-medium">User:</strong>
+      <%= User.find(profile.user_id).email %>
+    </div>
+    <div>
+      <strong class="block font-medium">Birthday:</strong>
+      <%= profile.birthday.strftime("%B %e, %Y") if profile.birthday %>
+    </div>
+  </div>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">First name:</strong>
-    <%= profile.first_name %>
-  </p>
+  <div class="mb-4 grid grid-cols-2">
+    <div>
+      <strong class="block font-medium">Full name:</strong>
+      <%= profile.first_name + " " + profile.middle_name[0] + ". " + profile.last_name %>
+    </div>
+    <div>
+      <strong class="block font-medium">Suffix:</strong>
+      <%= profile.suffix.present? ? profile.suffix : "N/A" %>
+    </div>
+  </div>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Middle name:</strong>
-    <%= profile.middle_name %>
-  </p>
+  <div class="mb-4 grid grid-cols-2">
+    <div>
+      <strong class="block font-medium">Address:</strong>
+      <%= profile.address %>
+    </div>
+    <div>
+      <strong class="block font-medium">Contact Number:</strong>
+      <%= profile.contact_number%>
+    </div>
+  </div>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Suffix:</strong>
-    <%= profile.suffix %>
-  </p>
-
-
-    <%= link_to "Edit this profile", edit_profile_path(profile), class: "btn btn-primary mr-2" %>
-
+  <div class="flex justify-end">
+    <%= link_to "Edit this profile", edit_profile_path(profile), class: "btn btn-primary" %>
+  </div>
 </div>
