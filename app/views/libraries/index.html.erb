@@ -20,7 +20,6 @@
       <thead class="bg-gray-800 text-white">
         <tr>
           <th class="py-2 px-4">Library</th>
-          <th class="py-2 px-4">Whodunnit</th>
           <th class="py-2 px-4">Action</th>
         </tr>
       </thead>
@@ -28,11 +27,6 @@
         <% @libraries.each do |library| %>
           <tr>
             <td class="py-2 px-4"><%= library.library_name %></td>
-            <td class="py-2 px-4">     
-              <% library.versions.each do |version| %>
-                <%= User.find_by(id: version.whodunnit).email %>
-              <%end%>
-            </td>
             <td class="py-2 px-4">
               <%= button_to library, method: :get, class: "btn btn-secondary" do %>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">

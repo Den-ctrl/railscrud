@@ -20,9 +20,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_11_051702) do
   end
 
   create_table "apps", force: :cascade do |t|
+    t.string "app_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "app_name"
   end
 
   create_table "clients", force: :cascade do |t|
@@ -31,9 +31,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_11_051702) do
   end
 
   create_table "libraries", force: :cascade do |t|
+    t.string "library_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "library_name"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -64,9 +64,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_11_051702) do
     t.string "event"
     t.datetime "start_date"
     t.datetime "end_date"
+    t.string "public_uid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "public_uid"
   end
 
   create_table "sections", force: :cascade do |t|
