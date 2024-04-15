@@ -19,6 +19,11 @@
     <%= form.collection_select :app_id, App.order(:app_name), :id, :app_name, { include_blank: 'Select App' }, class: "border rounded py-2 px-3 focus:outline-none focus:shadow-outline" %>
   </div>
 
+  <div class="mb-4">
+    <%= form.collection_select :plan, Subscription.plans.keys.map { |plan| [plan.titleize, plan] }, :last, :first, { include_blank: 'Select Subscription' }, class: "border rounded py-2 px-3 focus:outline-none focus:shadow-outline" %>
+  </div>
+
+
 
   <div>
     <%= form.submit "Submit", class: "bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
