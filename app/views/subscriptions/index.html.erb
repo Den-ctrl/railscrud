@@ -21,6 +21,7 @@
         <tr>
           <th class="py-2 px-4">User</th>
           <th class="py-2 px-4">App</th>
+           <th class="py-2 px-4">Subscription Plan</th>
           <th class="py-2 px-4">Action</th>
         </tr>
       </thead>
@@ -29,6 +30,7 @@
           <tr>
             <td class="py-2 px-4"><%= User.find_by(id: subscription.user_id)&.email %></td>
             <td class="py-2 px-4"><%= App.find_by(id: subscription.app_id)&.app_name %></td>
+            <td class="py-2 px-4"><%= subscription.plan %></td>
             <td class="py-2 px-4">
               <%= button_to subscription, method: :get, class: "btn btn-secondary" do %>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
