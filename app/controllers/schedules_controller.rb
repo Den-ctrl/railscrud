@@ -22,6 +22,7 @@ class SchedulesController < ApplicationController
 # POST /schedules or /schedules.json
 def create
   @schedule = Schedule.new(schedule_params)
+  puts schedule_params.inspect
 
   respond_to do |format|
     if @schedule.save
@@ -65,6 +66,6 @@ end
     
     # Only allow a list of trusted parameters through.
     def schedule_params
-      params.require(:schedule).permit(:event, :start_date, :end_date, :section_id, :schedulable_id, :schedulable_type)
+      params.require(:schedule).permit(:subscription_id, :event, :start_date, :end_date)
     end
 end

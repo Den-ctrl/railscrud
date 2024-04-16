@@ -1,6 +1,8 @@
 class Schedule < ApplicationRecord
     generate_public_uid
 
+    belongs_to :subscription, polymorphic: true, optional: true
+
     validates :event, uniqueness: true, presence: true
     validates :start_date, :end_date, presence: true
     

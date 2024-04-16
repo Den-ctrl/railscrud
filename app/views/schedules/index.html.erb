@@ -20,6 +20,7 @@
       <thead class="bg-gray-800 text-white">
         <tr>
           <th class="py-2 px-4">Event</th>
+          <th class="py-2 px-4">Subsriber ID</th>
           <th class="py-2 px-4">Start Date</th>
           <th class="py-2 px-4">End Date</th>
           <th class="py-2 px-4">Whodunnit</th>
@@ -30,6 +31,7 @@
         <% @schedules.each do |schedule| %>
           <tr>
             <td class="py-2 px-4"><%= schedule.event %></td>
+            <td class="py-2 px-4"><%= schedule.subscription_id %></td>
             <td class="py-2 px-4"><%= schedule.start_date %></td>
             <td class="py-2 px-4"><%= schedule.end_date %></td>
             <td class="py-2 px-4">     

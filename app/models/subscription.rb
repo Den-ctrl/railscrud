@@ -6,6 +6,8 @@ class Subscription < ApplicationRecord
 
   validates :plan, presence: true
 
+  has_many :schedules, as: :subscription
+
   belongs_to :user, optional: false
   belongs_to :app, optional: false
 end
