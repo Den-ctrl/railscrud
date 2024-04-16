@@ -13,6 +13,8 @@ class User < ApplicationRecord
   has_many :subscriptions, dependent: :restrict_with_error
   has_many :apps, through: :subscriptions
 
+  has_many :groups, dependent: :restrict_with_error
+
   def assign_default_role
     self.add_role(:client) if self.roles.blank?
   end
