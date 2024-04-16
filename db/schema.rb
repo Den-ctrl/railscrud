@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_15_063551) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_15_073554) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -67,6 +67,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_15_063551) do
     t.string "public_uid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "subscription_type"
+    t.bigint "subscription_id"
+    t.index ["subscription_type", "subscription_id"], name: "index_schedules_on_subscription"
   end
 
   create_table "sections", force: :cascade do |t|
@@ -86,7 +89,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_15_063551) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "plan"
+    t.string "subscriber_type"
+    t.bigint "subscriber_id"
     t.index ["app_id"], name: "index_subscriptions_on_app_id"
+    t.index ["subscriber_type", "subscriber_id"], name: "index_subscriptions_on_subscriber"
     t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
 
