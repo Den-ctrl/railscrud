@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :groups
   get 'tools/index'
   resources :profiles
   resources :subscriptions
