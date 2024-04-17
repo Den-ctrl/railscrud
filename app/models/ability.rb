@@ -9,11 +9,7 @@ class Ability
     if user.has_role?(:admin)
       can :manage, :all
     else
-      can :read, Section
-      can :read, Schedule
-      can :read, App
-      can :read, Library
-      can :read, Subscription
+      can :read, [Section, Schedule, App, Library, Subscription, Group]
     end
     
     # can [:create, :destroy, :update, :show], Section
