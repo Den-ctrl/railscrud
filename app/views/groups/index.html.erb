@@ -1,14 +1,46 @@
-<div class="w-full">
+<% if current_user %>
   <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+    <p class="text-green-500"><%= notice %></p>
   <% end %>
 
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Groups</h1>
-    <%= link_to "New group", new_group_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+  <div class="flex items-center justify-between mb-4 mt-4">
+    <h1 class="text-2xl font-semibold">Groups</h1>
+
+    <% if can? :create, @group %>
+      <%= button_to new_group_path, method: :get, class: "btn btn-primary ml-4" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+        </svg>
+      <% end %>
+    <% end %>
   </div>
 
-  <div id="groups" class="min-w-full">
-    <%= render @groups %>
+  <div class="overflow-x-auto">
+    <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+      <thead class="bg-gray-800 text-white">
+        <tr>
+          <th class="py-2 px-4">User</th>
+          <th class="py-2 px-4">App</th>
+           <th class="py-2 px-4">Subscription Plan</th>
+          <th class="py-2 px-4">Action</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200">
+        <% @groups.each do |group| %>
+          <tr>
+            <td class="py-2 px-4"><%= group.name %></td>
+            <td class="py-2 px-4"><%= User.find_by(id: group.user_id)&.email %></td>
+
+            <td class="py-2 px-4">
+              <%= button_to group, method: :get, class: "btn btn-secondary" do %>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+                </svg>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
-</div>
+<% end %>

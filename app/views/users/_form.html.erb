@@ -1,0 +1,83 @@
+<%= form_with(model: user) do |form| %>
+  <% if user.errors.any? %>
+    <div class="text-red-500">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+        <% user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-4 grid grid-cols-2 gap-4">
+    <div>
+      <%= form.label :email, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.email_field :email, autofocus: true, autocomplete: "email", class: "appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+
+    <div>
+      <%= form.label :password, class: "block text-gray-700 text-sm font-bold mb-2"%>
+      <%= form.password_field :password, autocomplete: "new-password", placeholder: "6 characters minimum", class: "appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+  </div>
+
+  <div class="mb-4 grid grid-cols-3 gap-4">
+    <%= form.fields_for :profile do |p| %>
+      <div>
+        <%= p.label :first_name, class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= p.text_field :first_name, class: "appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      </div>
+
+      <div>
+        <%= p.label :middle_name, class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= p.text_field :middle_name, class: "appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      </div>
+
+      <div>
+        <%= p.label :last_name, class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= p.text_field :last_name, class: "appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="mb-4 grid grid-cols-1 gap-4">
+    <%= form.fields_for :profile do |p| %>
+      <div>
+        <%= p.label :suffix, class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= p.text_field :suffix, class: "appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="mb-4 grid grid-cols-2 gap-4">
+    <%= form.fields_for :profile do |p| %>
+      <div>
+        <%= p.label :birthday, class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= p.text_field :birthday, class: "birthday-select appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
+          data: {
+            controller: "flatpickr",
+          }  
+        %>
+      </div>
+      <div>
+        <%= p.label :contact_number, class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= p.number_field :contact_number, class: "appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", value: 11111111111 %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="mb-4 grid grid-cols-1 gap-4">
+    <%= form.fields_for :profile do |p| %>
+      <div>
+        <%= p.label :address, class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= p.text_field :address, class: "appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.submit "Submit", class: "bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+  </div>
+<% end %>

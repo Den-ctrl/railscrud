@@ -1,8 +1,20 @@
-<div class="mx-auto md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">Editing group</h1>
+<div class="flex justify-center items-center h-screen">
+  <div class="bg-white shadow-md rounded-lg p-8">
+    <div class="flex justify-between items-center mb-4">
+      <h1 class="text-2xl font-semibold">Editing Group</h1>
+      <div>
+        <%= link_to groups_path, class: "inline-block text-gray-800 font-bold mb-2 rounded focus:outline-none focus:shadow-outline" do %>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block align-middle ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+        <% end %>
+      </div>
+    </div>
 
-  <%= render "form", group: @group %>
+    <%= render "form", group: @group %>
 
-  <%= link_to "Show this group", @group, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-  <%= link_to "Back to groups", groups_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <div class="mt-4">
+      <%= link_to "Show this group", @group, class: "btn btn-primary mr-2" %>
+    </div>
+  </div>
 </div>
