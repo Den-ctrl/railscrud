@@ -12,22 +12,43 @@
 require "faker"
 
 # Generate data for Section
-# 10.times do
-#     name = Faker::Name.name
-#     short_name = Faker::Name.initials(number: 2)
-
-#     section = Section.new(
-#         name: name,
-#         short_name: short_name,
-        
-#     )
-
-#     if section.save
-#         puts "Section saved successfully!"
-#     else
-#         puts "Error saving section: #{section.errors.full_messages.join(', ')}"
-#     end
-# end
+10.times do
+    name = Faker::Name.name
+    short_name = Faker::Name.initials(number: 2)
+  
+    # Create a new section
+    section = Section.new(
+      name: name,
+      short_name: short_name,
+      state: "activated"
+    )
+  
+    # Save the parent section
+    if section.save
+      puts "Parent section saved successfully!"
+  
+      # Create a child section with different data
+      child_name = Faker::Name.name
+      child_short_name = Faker::Name.initials(number: 2)
+  
+      child_section = Section.new(
+        name: child_name,
+        short_name: child_short_name,
+        state: "activated",
+        ancestry: section.id
+      )
+  
+      if child_section.save
+        puts "Child section saved successfully!"
+      else
+        puts "Error saving child section: #{child_section.errors.full_messages.join(', ')}"
+      end
+  
+    else
+      puts "Error saving parent section: #{section.errors.full_messages.join(', ')}"
+    end
+  end
+  
 
 
 
