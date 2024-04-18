@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :users
+
   resources :groups
   get 'tools/index'
   resources :profiles
@@ -7,14 +9,15 @@ Rails.application.routes.draw do
   resources :libraries
   resources :schedules
   resources :sections
+  resources :users
 
   # devise_for :users
-  devise_for :users, controllers: {
-    registrations: 'users'
-  }
+ 
   root 'main#home'
 
-  resources :users
+  # Selectize json data
+  get '/get_data', to: 'users#get_data'
+  
   get 'section', to: 'section#index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

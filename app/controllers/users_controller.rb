@@ -1,6 +1,12 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:new, :create]
+
+  # GET data for selectize
+  def get_data
+    @user_data = User.all
+    render json: @user_data
+  end
   
   # GET /users
   def index
