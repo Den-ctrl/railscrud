@@ -12,7 +12,17 @@
   <% end %>
 
   <div class="mb-4">
-    <%= form.collection_select :user_id, User.order(:email), :id, :email, { include_blank: 'Select User' }, data: { controller: 'selectize' }, class: "border rounded py-2 px-3 focus:outline-none focus:shadow-outline" %>
+    <%
+=begin%>
+ <%= form.collection_select :user_id, User.order(:email), :id, :email, { include_blank: 'Select User' }, data: { controller: 'selectize' }, class: "border rounded py-2 px-3 focus:outline-none focus:shadow-outline" %> 
+<%
+=end%>
+
+  </div>
+
+
+  <div class="mb-4">
+    <select id="select-user" class="border rounded py-2 px-3 focus:outline-none focus:shadow-outline" placeholder="Select User" data-controller="selectize"></select>
   </div>
 
    <div class="mb-4">

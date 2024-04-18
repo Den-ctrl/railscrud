@@ -12,42 +12,42 @@
 require "faker"
 
 # Generate data for Section
-10.times do
-    name = Faker::Name.name
-    short_name = Faker::Name.initials(number: 2)
+# 10.times do
+#     name = Faker::Name.name
+#     short_name = Faker::Name.initials(number: 2)
   
-    # Create a new section
-    section = Section.new(
-      name: name,
-      short_name: short_name,
-      state: "activated"
-    )
+#     # Create a new section
+#     section = Section.new(
+#       name: name,
+#       short_name: short_name,
+#       state: "activated"
+#     )
   
-    # Save the parent section
-    if section.save
-      puts "Parent section saved successfully!"
+#     # Save the parent section
+#     if section.save
+#       puts "Parent section saved successfully!"
   
-      # Create a child section with different data
-      child_name = Faker::Name.name
-      child_short_name = Faker::Name.initials(number: 2)
+#       # Create a child section with different data
+#       child_name = Faker::Name.name
+#       child_short_name = Faker::Name.initials(number: 2)
   
-      child_section = Section.new(
-        name: child_name,
-        short_name: child_short_name,
-        state: "activated",
-        ancestry: section.id
-      )
+#       child_section = Section.new(
+#         name: child_name,
+#         short_name: child_short_name,
+#         state: "activated",
+#         ancestry: section.id
+#       )
   
-      if child_section.save
-        puts "Child section saved successfully!"
-      else
-        puts "Error saving child section: #{child_section.errors.full_messages.join(', ')}"
-      end
+#       if child_section.save
+#         puts "Child section saved successfully!"
+#       else
+#         puts "Error saving child section: #{child_section.errors.full_messages.join(', ')}"
+#       end
   
-    else
-      puts "Error saving parent section: #{section.errors.full_messages.join(', ')}"
-    end
-  end
+#     else
+#       puts "Error saving parent section: #{section.errors.full_messages.join(', ')}"
+#     end
+#   end
   
 
 
@@ -73,6 +73,7 @@ require "faker"
 #     end
 # end
 
+# Generate data for App
 10.times do
     app_name = Faker::App.name
 
@@ -87,6 +88,7 @@ require "faker"
     end
 end
 
+# Generate data for Library
 10.times do
     library_name = Faker::Book.title
 
