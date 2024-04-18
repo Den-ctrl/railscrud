@@ -5,11 +5,17 @@ class Ability
 
   def initialize(user)
     user ||= User.new
-    # raise user.inspect
+    
     if user.has_role?(:admin)
+      can :create, Subscription
+      can :read, Section
+    end
+    
+    if user.has_role?(:admin) && user.subscriptions.present?
       can :manage, :all
     else
       can :read, [Section, Schedule, App, Library, Subscription, Group]
+      can :create, Subscription
     end
     
     # can [:create, :destroy, :update, :show], Section
