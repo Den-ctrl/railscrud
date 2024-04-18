@@ -13,6 +13,7 @@ class User < ApplicationRecord
   has_many :subscriptions, dependent: :restrict_with_error
   has_many :apps, through: :subscriptions
 
+  has_many :subscriptions, as: :subscribable
   has_many :groups, dependent: :restrict_with_error
 
   def assign_default_role

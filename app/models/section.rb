@@ -5,6 +5,8 @@ class Section < ApplicationRecord
 
     validates :name, :short_name, presence: true, uniqueness: true
 
+    has_many :libraries
+
     state_machine :state, initial: :activated do
          event :published do
             transition activated: :published

@@ -8,6 +8,7 @@ class Subscription < ApplicationRecord
 
   has_many :schedules, as: :subscription
 
+  belongs_to :subscribable, polymorphic: true, optional: true
   belongs_to :user, optional: false
   belongs_to :app, optional: false
 end
