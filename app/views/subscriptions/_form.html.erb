@@ -20,10 +20,19 @@
 
   </div>
 
+  <div class="mb-4" >
+    <%= form.select :user_id, User.order(:email).map { |user| [user.email, user.id] }, { include_blank: 'Select User' }, { id: 'select-user', class: 'border rounded py-2 px-3 focus:outline-none focus:shadow-outline', data: { controller: 'selectize' } } %> 
 
-  <div class="mb-4">
-    <select id="select-user" class="border rounded py-2 px-3 focus:outline-none focus:shadow-outline" placeholder="Select User" data-controller="selectize"></select>
   </div>
+
+
+  <%
+=begin%>
+ <div class="mb-4">
+    <select id="select-user" class="border rounded py-2 px-3 focus:outline-none focus:shadow-outline" placeholder="Select User" data-controller="selectize"></select>
+  </div> 
+<%
+=end%>
 
    <div class="mb-4">
     <%= form.collection_select :app_id, App.order(:app_name), :id, :app_name, { include_blank: 'Select App' }, class: "border rounded py-2 px-3 focus:outline-none focus:shadow-outline" %>
