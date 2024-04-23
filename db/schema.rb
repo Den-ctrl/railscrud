@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_22_082901) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_23_063714) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -80,15 +80,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_22_082901) do
     t.index ["subscription_type", "subscription_id"], name: "index_schedules_on_subscription"
   end
 
-  create_table "section_libraries", force: :cascade do |t|
-    t.bigint "section_id", null: false
-    t.bigint "library_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["library_id"], name: "index_section_libraries_on_library_id"
-    t.index ["section_id"], name: "index_section_libraries_on_section_id"
-  end
-
   create_table "sections", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.string "short_name", default: "", null: false
@@ -149,8 +140,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_22_082901) do
 
   add_foreign_key "groups", "users"
   add_foreign_key "profiles", "users"
-  add_foreign_key "section_libraries", "libraries"
-  add_foreign_key "section_libraries", "sections"
   add_foreign_key "subscriptions", "apps"
   add_foreign_key "subscriptions", "users"
 end
