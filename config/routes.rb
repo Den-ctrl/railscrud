@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   # devise_for :users
  
-  root 'main#home'
+  root 'users#index'
 
   # Selectize json data
   get '/get_data', to: 'users#get_data'

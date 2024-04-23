@@ -1,10 +1,18 @@
-<div class="flex justify-center items-center h-screen bg-gray-100">
-  <div class="w-full max-w-lg bg-white rounded-lg shadow-md">
-    <h1 class="text-3xl font-semibold mb-1 mt-8 text-center">User Profile</h1>
+<% if current_user && Subscription.exists?(user_id: current_user.id) %>
+  <div class="flex justify-center items-center h-screen bg-gray-100">
+    <div class="w-full max-w-lg bg-white rounded-lg shadow-md">
+      <h1 class="text-3xl font-semibold mb-1 mt-8 text-center">User Profile</h1>
 
-    <div id="profiles" class="w-full p-6">
-      <% @profile = @profiles.find_by(user_id: current_user.id) %>
-      <%= render partial: "profile", locals: { profile: @profile } if @profile %>
+      <div id="profiles" class="w-full p-6">
+        <% @profile = @profiles.find_by(user_id: current_user.id) %>
+        <%= render partial: "profile", locals: { profile: @profile } if @profile %>
+      </div>
     </div>
   </div>
-</div>
+
+<% else %>
+  <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+    <strong class="font-bold">Oops!</strong>
+    <span class="block sm:inline">You don't have a subscription.</span>
+  </div>
+<% end %>

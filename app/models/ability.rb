@@ -8,14 +8,9 @@ class Ability
     
     if user.has_role?(:admin) && Subscription.exists?(user_id: user.id)
       can :manage, :all
-  
-    elsif user.has_role?(:admin)
-      can :create, Subscription
-      can :read, Section
-    
+
     else
-      can :read, [Section, Schedule, App, Library, Subscription, Group]
-      can :create, Subscription
+      can :read, :all
     end
     
     # can [:create, :destroy, :update, :show], Section
