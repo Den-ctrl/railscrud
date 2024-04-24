@@ -62,4 +62,30 @@
       </table>
     </div>
   <% end %>
+
+
+  <%= form_with(model: @section) do |form| %>
+    <div class="field">
+      <%= form.collection_select :library_ids, Library.all, :id, :library_name, { multiple: true, include_blank: 'Select Libraries' }, class: "border rounded py-2 px-3 focus:outline-none focus:shadow-outline" %>
+    </div>
+    
+    <div class="actions">
+      <%= form.submit 'Assign Libraries' %>
+    </div>
+  <% end %>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @section.libraries.each do |library| %>
+        <tr>
+          <td><%= library.library_name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>

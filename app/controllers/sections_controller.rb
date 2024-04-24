@@ -77,6 +77,6 @@ class SectionsController < ApplicationController
   private
     # Only allow a list of trusted parameters through.
     def resource_params
-      params.require(:section).permit(:name, :short_name, :parent_id)
+      params.require(:section).permit(:name, :short_name, :parent_id, library_ids: [])
     end
 end
