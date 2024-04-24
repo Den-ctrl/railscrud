@@ -26,6 +26,33 @@
   </div>
 
   <%= render @library %>
+
+  <%= form_with(model: @library) do |form| %>
+    <div class="field">
+      <%= form.collection_select :section_ids, Section.all, :id, :name, { multiple: true, include_blank: 'Select Sections' }, class: "border rounded py-2 px-3 focus:outline-none focus:shadow-outline" %>
+    </div>
+    
+    <div class="actions">
+      <%= form.submit 'Assign Sections' %>
+    </div>
+  <% end %>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @library.sections.each do |section| %>
+        <tr>
+          <td><%= section.name %></td>
+          
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
 </div>
 
 

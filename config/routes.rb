@@ -6,9 +6,13 @@ Rails.application.routes.draw do
   resources :profiles
   resources :subscriptions
   resources :apps
-  resources :libraries
+  resources :libraries do
+    resources :library_sections
+  end
   resources :schedules
-  resources :sections
+  resources :sections do
+    resources :library_sections
+  end
   resources :users
 
   # devise_for :users
