@@ -3,7 +3,7 @@ class AppsController < ApplicationController
 
   # GET /apps or /apps.json
   def index
-    @apps = App.all
+    @apps = App.ordered
   end
 
   # GET /apps/1 or /apps/1.json
@@ -26,7 +26,8 @@ class AppsController < ApplicationController
     respond_to do |format|
       if @app.save
         format.html { redirect_to app_url(@app), notice: "App was successfully created." }
-        format.json { render :show, status: :created, location: @app }
+        # format.json { render :show, status: :created, location: @app }
+        format.turbo_stream
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @app.errors, status: :unprocessable_entity }
@@ -53,7 +54,8 @@ class AppsController < ApplicationController
   
     respond_to do |format|
       format.html { redirect_to apps_url, notice: "App was successfully destroyed." }
-      format.json { head :no_content }
+      # format.json { head :no_content }
+      format.turbo_stream
     end
   end
 

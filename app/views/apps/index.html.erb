@@ -7,15 +7,24 @@
     <h1 class="text-2xl font-semibold">Apps</h1>
 
     <% if can? :create, @app %>
-      <%= button_to new_app_path, method: :get, class: "btn btn-primary ml-4" do %>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-        </svg>
+      <%= turbo_frame_tag "app" do %>
+        <%= link_to new_app_path, method: :get, class: "btn btn-primary ml-4", data: { turbo_frame: dom_id(App.new) } do %>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+          </svg>
+        <% end %>
       <% end %>
     <% end %>
   </div>
+  
+  <%= turbo_frame_tag App.new %>
+  <%= turbo_frame_tag "apps" do %>
+    <%= render @apps %>
+  <% end %>
 
-  <div class="overflow-x-auto">
+  <%
+=begin%>
+ <div class="overflow-x-auto">
     <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
       <thead class="bg-gray-800 text-white">
         <tr>
@@ -38,7 +47,9 @@
         <% end %>
       </tbody>
     </table>
-  </div>
+  </div> 
+<%
+=end%>
 
 <% else %>
   <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">

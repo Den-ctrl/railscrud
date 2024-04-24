@@ -89,19 +89,19 @@ require "faker"
 end
 
 # Generate data for Library
-10.times do
-    library_name = Faker::Book.title
+# 10.times do
+#     library_name = Faker::Book.title
 
-    library = Library.new(
-        library_name: library_name
-    )
+#     library = Library.new(
+#         library_name: library_name
+#     )
 
-    if library.save
-        puts "Library saved successfully!"
-    else
-        puts "Error saving Library: #{library.errors.full_messages.join(', ')}"
-    end
-end
+#     if library.save
+#         puts "Library saved successfully!"
+#     else
+#         puts "Error saving Library: #{library.errors.full_messages.join(', ')}"
+#     end
+# end
 
 # Reindex sunspot after generating data
 system('rake sunspot:reindex')

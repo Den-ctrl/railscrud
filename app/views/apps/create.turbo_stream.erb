@@ -1,0 +1,5 @@
+<%= turbo_stream.prepend "apps" do %>
+  <%= render partial: "apps/app", locals: { app: @app } %>
+<% end %>
+
+<%= turbo_stream.update App.new, "" %>
