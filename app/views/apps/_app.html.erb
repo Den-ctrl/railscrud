@@ -1,7 +1,31 @@
-<div id="<%= dom_id app %>">
+<%
+=begin%>
+ <div id="<%= dom_id app %>">
   <p>
     <strong>App name:</strong>
     <%= app.app_name %>
   </p>
 
-</div>
+</div> 
+<%
+=end%>
+
+
+<%= turbo_frame_tag app do %>
+  <div class="app border border-gray-200 rounded p-4 mb-4">
+    <div class="flex justify-between items-center mb-2">
+      <h2 class="text-lg font-bold"><%= app.app_name %></h2>
+      <div class="space-x-2 flex items-center">
+        <%= button_to "Delete",
+                      app_path(app),
+                      method: :delete,
+                      form: { data: { turbo_frame: "_top" } },
+                      class: "btn btn--light bg-red-500 hover:bg-red-600 text-white py-1 px-3 rounded" %>
+        <%= link_to "Edit",
+                    edit_app_path(app),
+                    class: "btn btn--light bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded" %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
