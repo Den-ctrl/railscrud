@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "components/flash";
+@import "config/animations";
+
 /*
 
 @layer components {

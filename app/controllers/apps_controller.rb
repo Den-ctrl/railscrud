@@ -26,8 +26,7 @@ class AppsController < ApplicationController
     respond_to do |format|
       if @app.save
         format.html { redirect_to app_url(@app), notice: "App was successfully created." }
-        # format.json { render :show, status: :created, location: @app }
-        format.turbo_stream
+        format.turbo_stream { flash.now[:notice] = "App was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @app.errors, status: :unprocessable_entity }
