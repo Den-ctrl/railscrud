@@ -21,6 +21,7 @@
           <div>
             <% if current_user %>
               <div class="flex items-center">
+                <a href="" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium no-underline"><%= current_group&.name.presence || '' %></a>
                 <a href="<%= profiles_path %>" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium no-underline"><%= current_user.email %></a>
                 <div class="ml-3">
                   <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium no-underline" %>
