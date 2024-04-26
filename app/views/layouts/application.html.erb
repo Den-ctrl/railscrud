@@ -15,10 +15,6 @@
     <% if current_user %>
       <%= render 'layouts/navbar' %>
     <% end %>
-
-    <div class="flash">
-      <%= render "layouts/flash" %>
-    </div>
    
     <div class="container-fluid">
       <%= yield %>
