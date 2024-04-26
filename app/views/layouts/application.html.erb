@@ -15,11 +15,11 @@
     <% if current_user %>
       <%= render 'layouts/navbar' %>
     <% end %>
-
-    <div class="flash">
+   
+      <div id="flash" class="flash">
       <%= render "layouts/flash" %>
     </div>
-   
+
     <div class="container-fluid">
       <%= yield %>
     </div>

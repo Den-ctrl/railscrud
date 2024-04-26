@@ -16,14 +16,19 @@
     <div class="flex justify-between items-center mb-2">
       <h2 class="text-lg font-bold"><%= app.app_name %></h2>
       <div class="space-x-2 flex items-center">
-        <%= button_to "Delete",
-                      app_path(app),
-                      method: :delete,
-                      form: { data: { turbo_frame: "_top" } },
-                      class: "btn btn--light bg-red-500 hover:bg-red-600 text-white py-1 px-3 rounded" %>
+        <% if can? :delete, @app %>
+          <%= button_to "Delete",
+                        app_path(app),
+                        method: :delete,
+                        form: { data: { turbo_frame: "_top" } },
+                        class: "btn btn--light bg-red-500 hover:bg-red-600 text-white py-1 px-3 rounded" %>
+        <% end %>
+        
+        <% if can? :update, @app %>
         <%= link_to "Edit",
                     edit_app_path(app),
                     class: "btn btn--light bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded" %>
+        <% end %>
       </div>
     </div>
   </div>
