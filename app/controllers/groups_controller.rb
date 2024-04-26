@@ -3,8 +3,21 @@ class GroupsController < ApplicationController
 
   # GET /groups or /groups.json
   def index
-    @groups = Group.all
+    if user_signed_in?
+      user = current_user
+      
+      if user.has_role?(:admin)
+        @groups = Group.all
+      elsif user.has_role?(:client)
+        @groups = Group.where(user_id: user.id)
+      else
+        @groups = []
+      end
+    else
+      @groups = []
+    end
   end
+  
 
   # GET /groups/1 or /groups/1.json
   def show
