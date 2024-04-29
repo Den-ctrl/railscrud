@@ -17,7 +17,17 @@
     <% end %>
   </div>
   
-  <%= turbo_frame_tag App.new %>
+  <%
+=begin%>
+ <%= turbo_frame_tag App.new %> 
+<%
+=end%>
+
+   <%= turbo_frame_tag App.new do %>
+    <% if @apps.none? %>
+      <%= render "apps/empty_state" %>
+    <% end %>
+  <% end %>
   <%= turbo_frame_tag "apps" do %>
     <%= render @apps %>
   <% end %>
