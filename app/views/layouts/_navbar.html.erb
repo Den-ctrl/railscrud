@@ -1,17 +1,15 @@
 <nav class="bg-gray-800">
   <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-    <div class="relative flex h-16 items-center justify-between">
+    <div id="sidebar-content" class="relative flex h-16 items-center justify-between">
       <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
         <div class="hidden sm:ml-6 sm:block">
           <div class="flex space-x-4">
             <% if current_user %>
-              <a href="<%= users_path %>" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium no-underline">Home</a>
-              <a href="<%= sections_path %>" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium no-underline">Section</a>
-              <a href="<%= schedules_path %>" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium no-underline">Schedule</a>
-              <a href="<%= apps_path %>" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium no-underline">App</a>
-              <a href="<%= libraries_path %>" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium no-underline">Library</a>
-              <a href="<%= subscriptions_path %>" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium no-underline">Subscription</a>
-              <a href="<%= groups_path %>" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium no-underline">Group</a>
+            <button id="sidebar-toggle" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium no-underline">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+              </svg>
+            </button>
             <% end %>
           </div>
         </div>
@@ -36,5 +34,19 @@
       </div>
     </div>
   </div>
-
 </nav>
+
+<nav id="sidebar" class="bg-gray-800 h-full w-56 fixed top-0 left-0 overflow-y-auto transform -translate-x-full transition-transform duration-200 ease-in-out">
+  <div class="px-4 py-6">
+    <% if current_user %>
+      <a href="<%= users_path %>" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium block">Home</a>
+      <a href="<%= sections_path %>" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium block">Section</a>
+      <a href="<%= schedules_path %>" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium block">Schedule</a>
+      <a href="<%= apps_path %>" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium block">App</a>
+      <a href="<%= libraries_path %>" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium block">Library</a>
+      <a href="<%= subscriptions_path %>" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium block">Subscription</a>
+      <a href="<%= groups_path %>" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium block">Group</a>
+    <% end %>
+  </div>
+</nav>
+

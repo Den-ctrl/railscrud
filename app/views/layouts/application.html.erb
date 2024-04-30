@@ -16,12 +16,31 @@
       <%= render 'layouts/navbar' %>
     <% end %>
    
-      <div id="flash" class="flash">
+    <div id="flash" class="flash">
       <%= render "layouts/flash" %>
     </div>
 
-    <div class="container-fluid">
+    <div id="main-content" class="container-fluid" style="<%= @main_content_style %>">
       <%= yield %>
     </div>
+    
   </body>
 </html>
+
+<script>
+  const sidebar = document.getElementById('sidebar');
+  const sidebarToggle = document.getElementById('sidebar-toggle');
+  const sidebarContent = document.getElementById('sidebar-content');
+  const mainContent = document.getElementById('main-content');
+
+  sidebarToggle.addEventListener('click', () => {
+    sidebar.classList.toggle('-translate-x-full');
+    sidebarContent.classList.toggle('ml-40');
+
+    const isSidebarHidden = sidebar.classList.contains('-translate-x-full');
+    
+    const mainContentStyle = isSidebarHidden ? '' : 'margin-left: 250px;'; 
+    
+    mainContent.setAttribute('style', mainContentStyle);
+  });
+</script>
