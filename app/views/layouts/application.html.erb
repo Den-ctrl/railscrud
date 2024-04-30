@@ -21,7 +21,9 @@
     </div>
 
     <div id="main-content" class="container-fluid" style="<%= @main_content_style %>">
-      <%= yield %>
+      <div style="margin-left: 6rem; margin-right: 6rem;">
+        <%= yield %>
+      </div>
     </div>
     
   </body>
@@ -39,7 +41,7 @@
 
     const isSidebarHidden = sidebar.classList.contains('-translate-x-full');
     
-    const mainContentStyle = isSidebarHidden ? '' : 'margin-left: 250px;'; 
+    const mainContentStyle = isSidebarHidden ? '' : 'margin-left: 10rem;'; 
     
     mainContent.setAttribute('style', mainContentStyle);
   });

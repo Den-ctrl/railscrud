@@ -18,7 +18,9 @@
         <% end %>
       <% end %>
 
-      <% if can? :create, @user %>
+      <%
+=begin%>
+ <% if can? :create, @user %>
         <%= button_to new_user_path, method: :get, class: "btn btn-primary ml-4" do %>
           <div class="flex items-center">
             <span class="mr-2">Create User</span>
@@ -27,7 +29,9 @@
             </svg>
           </div>
         <% end %>
-      <% end %>
+      <% end %> 
+<%
+=end%>
 
     </div>
   </div>
@@ -37,7 +41,6 @@
       <thead class="bg-gray-800 text-white">
         <tr>
           <th class="py-2 px-4">Group Name</th>
-          <th class="py-2 px-4">Owner Email</th>
           <th class="py-2 px-4">Action</th>
         </tr>
       </thead>
@@ -45,7 +48,6 @@
         <% @groups.each do |group| %>
           <tr>
             <td class="py-2 px-4"><%= group.name %></td>
-            <td class="py-2 px-4"><%= User.find_by(id: group.user_id)&.email %></td>
             <td class="py-2 px-4">
               <%= button_to group, method: :get, class: "btn btn-secondary" do %>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
