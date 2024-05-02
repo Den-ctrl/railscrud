@@ -20,6 +20,8 @@
       <%= render "layouts/flash" %>
     </div>
 
+    <%= turbo_frame_tag "modal" %>
+
     <div id="main-content" class="container-fluid" style="<%= @main_content_style %>">
       <div style="margin-left: 6rem; margin-right: 6rem;">
         <%= yield %>
