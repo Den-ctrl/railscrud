@@ -8,7 +8,7 @@
 
     <% if can? :create, @app %>
       <%= turbo_frame_tag "app" do %>
-        <%= link_to new_app_path, method: :get, class: "btn btn-primary ml-4", data: { turbo_frame: dom_id(App.new) } do %>
+        <%= link_to new_app_path, method: :get, class: "btn btn-primary ml-4", data: { turbo_frame: "modal" } do %>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
           </svg>

@@ -7,8 +7,8 @@ import { application } from "./application"
 import FlatpickrController from "./flatpickr_controller"
 application.register("flatpickr", FlatpickrController)
 
-import HelloController from "./hello_controller"
-application.register("hello", HelloController)
+import ModalsController from "./modals_controller"
+application.register("modals", ModalsController)
 
 import RemovalsController from "./removals_controller"
 application.register("removals", RemovalsController)
